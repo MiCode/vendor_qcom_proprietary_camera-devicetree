@@ -1,1 +1,2 @@
-# vendor_qcom_proprietary_camera-devicetree
+| Branch | Device | Android version | Base tag | Link |
+| :-: | :-: | :-: | :-: | :-: |
