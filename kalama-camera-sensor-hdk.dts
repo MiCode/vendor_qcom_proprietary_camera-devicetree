@@ -7,11 +7,10 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
-#include "kalama-camera-sensor-mtp.dtsi"
+#include "kalama-camera-sensor-hdk.dtsi"
 / {
-	model = "Qualcomm Technologies, Inc. Kalama MTP";
-	compatible = "qcom,kalama-mtp", "qcom,kalama", "qcom,mtp";
+	model = "Qualcomm Technologies, Inc. Kalama QRD";
+	compatible = "qcom,kalama-qrd", "qcom,kalama", "qcom,qrd";
 	qcom,msm-id = <519 0x10000>, <536 0x10000>, <519 0x20000>, <536 0x20000>;
-	qcom,board-id = <0x10008 0>;
-	xiaomi,miboard-id = <0x1000 0>;
+	qcom,board-id = <0x1001f 0>;
 };

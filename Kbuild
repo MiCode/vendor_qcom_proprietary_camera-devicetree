@@ -1,5 +1,12 @@
 # Use current $(MSM_ARCH) to set config/ makefile path
+
+ifeq ($(MSM_ARCH), $(filter $(MSM_ARCH), nuwa fuxi socrates ishtar babylon vermeer sheng))
+CAMERA_DTBO_CONFIG_MK=kalama
+CAMERA_TARGET_MKFILE_PATH := $(CAMERA_DEVICETREE_ROOT)/config/$(CAMERA_DTBO_CONFIG_MK).mk
+else
 CAMERA_TARGET_MKFILE_PATH := $(CAMERA_DEVICETREE_ROOT)/config/$(MSM_ARCH).mk
+endif
+
 # Check to see if current target makefile exists
 CAMERA_TARGET_EXISTS := $(or $(and $(wildcard $(CAMERA_TARGET_MKFILE_PATH)),y),n)
 
