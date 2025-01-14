@@ -7,10 +7,11 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
-#include "pineapple-camera-sensor-mtp.dtsi"
+#include "pineapple-camera-v2.dtsi"
+
 / {
-	model = "Qualcomm Technologies, Inc. Pineapple MTP";
-	compatible = "qcom,pineapple-mtp", "qcom,pineapple", "qcom,mtp";
-	qcom,msm-id = <557 0x10000>, <557 0x20000>, <577 0x10000>, <577 0x20000>;
-	qcom,board-id = <8 0>, <0x50008 0>;
+	model = "Qualcomm Technologies, Inc. Pineapple SoC";
+	compatible = "qcom,pineapple";
+	qcom,msm-id = <557 0x20000>, <577 0x20000>;
+	qcom,board-id = <0 0>;
 };

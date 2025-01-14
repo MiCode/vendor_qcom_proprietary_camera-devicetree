@@ -179,6 +179,11 @@ and name of firmware image.
   Value type: <empty>
   Definition: Flag to indicate whether this is non real time device.
 
+- fw-pas-id
+  Usage: required
+  Value type: <u32>
+  Definition: Firmware pas id to identify the subsystem in PIL framework
+
 Examples:
 cam_a5: qcom,a5 {
 	cell-index = <0>;

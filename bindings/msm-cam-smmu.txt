@@ -62,6 +62,11 @@ Second Level Node - CAM SMMU context bank device or firmware device
   Value type: boolean
   Definition: Specifies if the context bank is a secure context bank.
 
+- qti,smmu-proxy-cb-id
+  Usage: optional for secure camera 2.0, required for 2.5
+  Value type: <u32>
+  Definition: Specifies that the SMMU proxy client is camera.
+
 =============================================
 Third Level Node - CAM SMMU memory map device
 =============================================
