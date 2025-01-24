@@ -97,6 +97,11 @@ First Level Node - CAM CPAS device
   Value type: <u64>
   Definition: Min camnoc axi bw for the given target.
 
+- cam-max-rt-axi-bw
+  Usage: optional
+  Value type: <u64>
+  Definition: Max RT axi bw allowed to be voted for the given target.
+
 - regulator-names
   Usage: required
   Value type: <string>
@@ -144,6 +149,12 @@ First Level Node - CAM CPAS device
   Value type: <empty>
   Definition: Bool property specifying whether to control camnoc axi
               clock from cpas driver.
+
+- cam-crmb-clk
+  Usage: required
+  Value type: <empty>
+  Definition: Flag indicating whether the src clk in this node is
+              a crmb clk or not
 
 - camnoc-bus-width
   Usage: required if control-camnoc-axi-clk is enabled
@@ -217,6 +228,11 @@ First Level Node - CAM CPAS device
   Value type: <u32>
   Definition: Client ID for camera caches. ID is used to differentiate
 	the property of the cache like being Forget, Dealloc.
+
+- enable-secure-qos-update
+  Usage: optional
+  Value type: <empty>
+  Definition: Bool property specifying whether secure camera Qos update feature is enabled.
 
 - enable-smart-qos
   Usage: optional
@@ -504,6 +520,7 @@ Example:
 		clock-cntl-level = "turbo";
 		qcom,cam-cx-ipeak = <&cx_ipeak_lm 8>;
 		control-camnoc-axi-clk;
+		cam-crmb-clk;
 		camnoc-bus-width = <32>;
 		camnoc-axi-clk-bw-margin-perc = <10>;
 		qcom,msm-bus,name = "cam_ahb";
