@@ -1,0 +1,732 @@
+#include <dt-bindings/msm-camera.h>
+&gcc {
+	qcom,critical-devices = <&qupv3_se7_i2c>;
+};
+
+//wide
+&cam_csiphy2 {
+	compatible = "qcom,csiphy-v2.2.1-p16u", "qcom,csiphy";
+};
+
+
+//hap
+&qupv3_se7_i2c {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "ok";
+
+	wl28661d@28 {
+		compatible = "xiaomi,wl28661d-pmic";
+		reg = <0x28>;
+		vin1-supply = <&S2B>;
+		vin2-supply = <&BOB>;
+
+		wl28661d_dvdd1: wl28661d-regulator@0 {
+			cell-index = <0>;
+			reg = /bits/ 8 <0x3>;
+			type = "dvdd";
+			regulator-name = "wl28661d_dvdd1";
+			regulator-min-microvolt = <504000>;
+			regulator-max-microvolt = <1384000>;
+		};
+
+		wl28661d_dvdd2: wl28661d-regulator@1 {
+			cell-index = <1>;
+			reg = /bits/ 8 <0x4>;
+			type = "dvdd";
+			regulator-name = "wl28661d_dvdd2";
+			regulator-min-microvolt = <504000>;
+			regulator-max-microvolt = <1384000>;
+		};
+
+		wl28661d_avdd1: wl28661d-regulator@2 {
+			cell-index = <2>;
+			reg = /bits/ 8 <0x5>;
+			type = "avdd";
+			regulator-name = "wl28661d_avdd1";
+			regulator-min-microvolt = <1384000>;
+			regulator-max-microvolt = <3424000>;
+		};
+
+		wl28661d_avdd2: wl28661d-regulator@3 {
+			cell-index = <3>;
+			reg = /bits/ 8 <0x6>;
+			type = "avdd";
+			regulator-name = "wl28661d_avdd2";
+			regulator-min-microvolt = <1384000>;
+			regulator-max-microvolt = <3424000>;
+		};
+	};
+};
+
+&L3F {
+	regulator-min-microvolt = <850000>;
+	regulator-max-microvolt = <1220000>;
+};
+
+&L11B {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+};
+
+&L13B {
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+};
+
+&L14B {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <2800000>;
+};
+
+ &BOB {
+	qcom,hpm-min-load = <10000>;	
+	regulator-min-microvolt = <3008000>;
+	regulator-max-microvolt = <3960000>;
+	qcom,init-voltage = <3328000>;
+ };
+
+ &S2B {
+	qcom,hpm-min-load = <10000>;	
+	regulator-min-microvolt = <1256000>;
+	regulator-max-microvolt = <1408000>;
+	qcom,init-voltage = <1256000>;
+ };
+
+&pmxr2230_flash {
+	status = "ok";
+};
+
+&pmxr2230_flash0 {
+	qcom,max-current-ma = <400>;
+	qcom,duration-ms = <300>;
+	xiaomi,max-duration-ms = <300>;
+	qcom,ires-ua = <5000>;
+};
+
+&pmxr2230_flash3 {
+        qcom,max-current-ma = <400>;
+        qcom,duration-ms = <300>;
+        xiaomi,max-duration-ms = <300>;
+        qcom,ires-ua = <5000>;
+};
+&pmxr2230_torch0{
+	qcom,max-current-ma = <400>;
+	xiaomi,currents-with-time = <400 300>;
+	xiaomi,time-for-currents = <5000 0xFFFFFFFF>;  /* 0xFFFFFFFF means flash always on*/
+	qcom,ires-ua = <5000>;
+};
+&pmxr2230_torch3{
+        qcom,max-current-ma = <400>;
+        xiaomi,currents-with-time = <400 300>;
+        xiaomi,time-for-currents = <5000 0xFFFFFFFF>;  /* 0xFFFFFFFF means flash always on*/
+        qcom,ires-ua = <5000>;
+};
+&pmxr2230_switch0 {
+	qcom,led-mask = <9>; // Channels 1 & 4
+	qcom,symmetry-en;
+};
+
+
+&tlmm {
+	flourite_cci_i2c_sda0_active: flourite_cci_i2c_sda0_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio88";
+			function = "cci_i2c_sda0";
+		};
+
+		config {
+			pins = "gpio88";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	flourite_cci_i2c_scl0_active: flourite_cci_i2c_scl0_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio89";
+			function = "cci_i2c_scl0";
+		};
+
+		config {
+			pins = "gpio89";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	flourite_cci_i2c_sda2_active: flourite_cci_i2c_sda2_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio92";
+			function = "cci_i2c_sda2";
+		};
+
+		config {
+			pins = "gpio92";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	flourite_cci_i2c_scl2_active: flourite_cci_i2c_scl2_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio93";
+			function = "cci_i2c_scl2";
+		};
+
+		config {
+			pins = "gpio93";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	flourite_cci_i2c_sda3_active: flourite_cci_i2c_sda3_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio94";
+			function = "cci_i2c_sda3";
+		};
+
+		config {
+			pins = "gpio94";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	flourite_cci_i2c_scl3_active: flourite_cci_i2c_scl3_active {
+		mux {
+			/* CLK, DATA */
+			pins = "gpio95";
+			function = "cci_i2c_scl3";
+		};
+
+		config {
+			pins = "gpio95";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_ultra_active_avdd: cam_sensor_ultra_active_avdd {
+		mux {
+			pins = "gpio73";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio73";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_ultra_suspend_avdd: cam_sensor_ultra_suspend_avdd {
+		mux {
+			pins = "gpio73";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio73";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_tele_active_avdd: cam_sensor_tele_active_avdd {
+		mux {
+			pins = "gpio73";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio73";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_tele_suspend_avdd: cam_sensor_tele_suspend_avdd {
+		mux {
+			pins = "gpio73";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio73";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_front_active_rst0: cam_sensor_front_active_rst0 {
+		mux {
+			pins = "gpio40";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio40";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_front_suspend_rst0: cam_sensor_front_suspend_rst0 {
+		mux {
+			pins = "gpio40";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio40";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_wide_active_rst1: cam_sensor_wide_active_rst1 {
+		mux {
+			pins = "gpio41";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio41";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_wide_suspend_rst1: cam_sensor_wide_suspend_rst1 {
+		mux {
+			pins = "gpio41";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio41";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_ultra_active_rst1: cam_sensor_ultra_active_rst1 {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio24";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_ultra_suspend_rst1: cam_sensor_ultra_suspend_rst1 {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio24";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_ultra_active_rst3: cam_sensor_ultra_active_rst3 {
+		mux {
+			pins = "gpio23";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio23";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_ultra_suspend_rst3: cam_sensor_ultra_suspend_rst3 {
+		mux {
+			pins = "gpio23";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio23";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_front_mclk0_active: cam_sensor_front_mclk0_active {
+		/* MCLK0 */
+		mux {
+			pins = "gpio83";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio83";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_front_mclk0_suspend: cam_sensor_front_mclk0_suspend {
+		/* MCLK0 */
+		mux {
+			pins = "gpio83";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio83";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_ultra_mclk1_active: cam_sensor_ultra_mclk1_active {
+		/* MCLK1 */
+		mux {
+			pins = "gpio84";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio84";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_ultra_mclk1_suspend: cam_sensor_ultra_mclk1_suspend {
+		/* MCLK1 */
+		mux {
+			pins = "gpio84";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio84";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_tele_active_rst1: cam_sensor_tele_active_rst1 {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio24";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_tele_suspend_rst1: cam_sensor_tele_suspend_rst1 {
+		mux {
+			pins = "gpio24";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio24";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_tele_mclk1_active: cam_sensor_tele_mclk1_active {
+		/* MCLK1 */
+		mux {
+			pins = "gpio84";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio84";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_tele_mclk1_suspend: cam_sensor_tele_mclk1_suspend {
+		/* MCLK1 */
+		mux {
+			pins = "gpio84";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio84";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_wide_mclk2_active: cam_sensor_wide_mclk2_active {
+		/* MCLK2 */
+		mux {
+			pins = "gpio85";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio85";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_wide_mclk2_suspend: cam_sensor_wide_mclk2_suspend {
+		/* MCLK2 */
+		mux {
+			pins = "gpio85";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio85";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_ultra_mclk3_active: cam_sensor_ultra_mclk3_active {
+		/* MCLK1 */
+		mux {
+			pins = "gpio86";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio86";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_ultra_mclk3_suspend: cam_sensor_ultra_mclk3_suspend {
+		/* MCLK1 */
+		mux {
+			pins = "gpio86";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio86";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_front_active_avdd: cam_sensor_front_active_avdd {
+		mux {
+			pins = "gpio79";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio79";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_front_suspend_avdd: cam_sensor_front_suspend_avdd {
+		mux {
+			pins = "gpio79";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio79";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_ultra_active_dvdd: cam_sensor_ultra_active_dvdd {
+		mux {
+			pins = "gpio74";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio74";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_sensor_ultra_suspend_dvdd: cam_sensor_ultra_suspend_dvdd {
+		mux {
+			pins = "gpio74";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio74";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_ois_wide_active: cam_ois_wide_active {
+		mux {
+			pins = "gpio161";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio161";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	cam_ois_wide_suspend: cam_ois_wide_suspend {
+		mux {
+			pins = "gpio161";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio161";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+};
+
+&soc {
+	qcom,cam-res-mgr {
+		compatible = "qcom,cam-res-mgr";
+		status = "ok";
+	};
+
+	led_flash_rear_wide: qcom,camera-flash0 {
+		cell-index = <0>;
+		compatible = "qcom,camera-flash";
+		flash-source = <&pmxr2230_flash0>;
+		torch-source = <&pmxr2230_torch0>;
+		switch-source = <&pmxr2230_switch0>;
+		status = "ok";
+	};
+
+	led_flash_rear_ultra: qcom,camera-flash2 {
+		cell-index = <2>;
+		compatible = "qcom,camera-flash";
+		flash-source = <&pmxr2230_flash0>;
+		torch-source = <&pmxr2230_torch0>;
+		switch-source = <&pmxr2230_switch0>;
+		status = "ok";
+	};
+
+	led_flash_rear_tele: qcom,camera-flash3 {
+		cell-index = <3>;
+		compatible = "qcom,camera-flash";
+		flash-source = <&pmxr2230_flash0>;
+		torch-source = <&pmxr2230_torch0>;
+		switch-source = <&pmxr2230_switch0>;
+		status = "ok";
+	};
+
+	camera_ultra_avdd_ldo: gpio-regulator@0 {
+		compatible = "regulator-fixed";
+		reg = <0x00 0x00>;
+		regulator-name = "camera_ultra_avdd_ldo";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <100>;
+		enable-active-high;
+		gpio = <&tlmm 73 0>;
+		pinctrl-names = "ultra_avdd_active", "ultra_avdd_suspend";
+		pinctrl-0 = <&cam_sensor_ultra_active_avdd
+					 &cam_sensor_ultra_suspend_avdd>;
+		vin-supply = <&BOB>;
+	};
+
+	camera_front_avdd_ldo: gpio-regulator@1 {
+		compatible = "regulator-fixed";
+		reg = <0x01 0x00>;
+		regulator-name = "camera_front_avdd_ldo";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <100>;
+		enable-active-high;
+		gpio = <&tlmm 79 0>;
+		pinctrl-names = "front_avdd_active", "front_avdd_suspend";
+		pinctrl-0 = <&cam_sensor_front_active_avdd
+					 &cam_sensor_front_suspend_avdd>;
+		vin-supply = <&BOB>;
+	};
+
+	camera_ultra_dvdd_ldo: gpio-regulator@2 {
+		compatible = "regulator-fixed";
+		reg = <0x02 0x00>;
+		regulator-name = "camera_ultra_dvdd_ldo";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		regulator-enable-ramp-delay = <100>;
+		enable-active-high;
+		gpio = <&tlmm 74 0>;
+		pinctrl-names = "ultra_dvdd_active", "ultra_dvdd_suspend";
+		pinctrl-0 = <&cam_sensor_ultra_active_dvdd
+					 &cam_sensor_ultra_suspend_dvdd>;
+		vin-supply = <&S2B>;
+	};
+
+	camera_tele_avdd_ldo: gpio-regulator@3 {
+		compatible = "regulator-fixed";
+		reg = <0x03 0x00>;
+		regulator-name = "camera_tele_avdd_ldo";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		regulator-enable-ramp-delay = <100>;
+		enable-active-high;
+		gpio = <&tlmm 73 0>;
+		pinctrl-names = "tele_avdd_active", "tele_avdd_suspend";
+		pinctrl-0 = <&cam_sensor_tele_active_avdd
+                     &cam_sensor_tele_suspend_avdd>;
+    };
+
+	camera_wide_ois_ldo: gpio-regulator@4 {
+		compatible = "regulator-fixed";
+		reg = <0x04 0x00>;
+		regulator-name = "camera_wide_ois_ldo";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-enable-ramp-delay = <100>;
+		enable-active-high;
+		gpio = <&tlmm 161 0>;
+		pinctrl-names = "wide_ois_active", "wide_ois_suspend";
+		pinctrl-0 = <&cam_ois_wide_active
+					 &cam_ois_wide_suspend>;
+	};
+};

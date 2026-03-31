@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,gcc-volcano.h>
+#include <dt-bindings/clock/qcom,camcc-volcano.h>
+#include <dt-bindings/interconnect/qcom,volcano.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+#include "flourite-sm7635-camera-sensor.dtsi"
+#include "flourite-sm7635-camera-sensor-cn-p0.dtsi"
+#include "flourite-sm7635-camera-sensor-gl-p0.dtsi"
+#include "flourite-sm7635-camera-sensor-cn-p1.dtsi"
+#include "flourite-sm7635-camera-sensor-gl-p1.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Flourite based on volcano";
+	compatible = "qcom,volcano";
+	qcom,msm-id = <636 0x10000>, <640 0x10000>, <641 0x10000>;
+	qcom,board-id = <8 0>;
+	xiaomi,miboard-id = <0xE 0>;
+};
