@@ -1,0 +1,11 @@
+/dts-v1/;
+/plugin/;
+
+#include "scuba-camera.dtsi"
+#include "scuba-camera-sensor-idp.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Scuba IOT IDP";
+	compatible = "qcom,scuba-idp", "qcom,scuba-iot";
+	qcom,msm-id = <441 0x10000>, <473 0x10000>, <474 0x10000>;
+	qcom,board-id = <0 0>, <34 0>, <0 0x400>;
+};
