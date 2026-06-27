@@ -22,3 +22,4 @@
 | piano-w-oss | Xiaomi Pad 8 Pro | Android W | LA.VENDOR.15.4.0.r1-15000-r1.0.r1_00044.1 |[piano-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_camera-devicetree/tree/piano-w-oss) |
 | sunstone-u-oss | Redmi Note 12 5G / Redmi Note 12 5G / Redmi Note 12R | Android U | Snapdragon_Mid_2021.SPF.2.0 r2.0.c3_00004.3.145544.1 |[sunstone-u-oss](https://github.com/MiCode/vendor_qcom_proprietary_camera-devicetree/tree/sunstone-u-oss) |
 | guitar-w-oss | REDMI Pad 2 SE | Android W | snapdragon-mid-2022-spf-2-0-2_00004.0 |[guitar-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_camera-devicetree/tree/guitar-w-oss) |
+| erhu-w-oss | REDMI Pad 2 SE 4G | Android W | snapdragon-mid-2022-spf-2-0-2_00004.0 |[erhu-w-oss](https://github.com/MiCode/vendor_qcom_proprietary_camera-devicetree/tree/erhu-w-oss) |
