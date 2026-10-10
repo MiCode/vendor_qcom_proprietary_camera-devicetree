@@ -1,0 +1,8 @@
+&soc {
+	qcom,tfe2@5c7c000 {
+		status = "disabled";
+	};
+	qcom,tfe_csid2@5c7c000 {
+		status = "disabled";
+	};
+};

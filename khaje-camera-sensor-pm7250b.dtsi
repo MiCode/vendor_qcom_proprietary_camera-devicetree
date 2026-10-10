@@ -1,0 +1,4 @@
+&cam_res_mgr_label {
+	gpios = <&pm7250b_gpios 4 0>;
+};
+
